@@ -20,6 +20,12 @@
    default userName is **user** and password is generated during running time which is console in output with a key as *
    *Using generated security password**
 
+# By Default spring security enable the CSFR security because  of this method like post, put, delete are block, we are not able to access it.
+
+# To Enable this
+1. Override the default SecurityFilterChain class
+2. Inside this class disable the CSRF security.
+
 # To change the default username and password generation
 
 1. To **change** the default **username** and **password** generation, we need to add Spring Security configuration to
@@ -170,7 +176,9 @@ Authorization is the process of checking what actions a user is allowed to perfo
 3. By default, role in Spring Security have a "ROLE_" prefix attached (eg:-"ROLE_ADMIN")
 
 # Assignment
+
 ![img_1.png](img_1.png)
+
 # Method Level Security
 
 To enable method level security we have to add ```@EnableMethodSecurity(prePostEnabled=true)``` annotation in our
