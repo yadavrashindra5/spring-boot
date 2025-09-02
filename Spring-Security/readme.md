@@ -23,6 +23,7 @@
 # By Default spring security enable the CSFR security because  of this method like post, put, delete are block, we are not able to access it.
 
 # To Enable this
+
 1. Override the default SecurityFilterChain class
 2. Inside this class disable the CSRF security.
 
@@ -187,6 +188,56 @@ securityConfiguration class.
 we can use different method to the method level annotation.
 ![img.png](img.png)
 
+# JWT Token Based Authentication
+
+# Token Based Authentication
+
+- Token is plain string that can information and get generated when user authenticated first time.
+- Whenever client want to access protected API then client need to send token with request
+- Token based is stateless in nature
+- Store user information no need to store data on server
+- JWT has three parts
+    - Header
+    - Payload
+    - Signature(Optional)
+
+```
+**eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9**.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.**KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30**
+```
+
+![img_2.png](img_2.png)
+
+# JWT Authenticatio Flow
+
+![img_3.png](img_3.png)
+
+# Steps to implement JWT in project
+
+1. Add the required dependencies
+    - Security-------------spring-boot-starter-security
+    - Jwt-api ------------
+    - jwt-impl
+    - jjwt-jackson
+2. Create **JWTHelper class**. This class contains method related to perform operations with **jwt token** like *
+   *generateToken**, **validateToken** etc.
+3. Create **JWTAuthenticationEntryPoint** class. That implements **AuthenticationEntryPoint**. Method of this class is
+   invoked whenever as exception is thrown due to unauthenticated user trying to access the resource that required
+   authentication.
+4. Create **JWTAuthenticationFilter** that extends **OncePerRequestFilter** and override method, write the logic to
+   check the token that is coming in header. we have to write 5 important logic.
+    - Get Token from request
+    - Validate Token
+    - GetUsername from token
+    - Load user associated with this token
+    - set authentication to security context
+
+# Steps to implement jwt in project
+
+5. Configure spring security in configuration file
+6. Create **JWTRequest** and **JWTResponse** to receive request data and send logic success response.
+7. Create logic api to access username and password and return token if username and password is correct.
+8. Test the application
+
 # References
 
 1. https://docs.spring.io/spring-boot/appendix/application-properties/index.html (common spring security properties)
@@ -204,6 +255,12 @@ we can use different method to the method level annotation.
 3. InMemoryUserDetailsManager
 4. SpringBootWebSecurityConfiguration (need to read)
 5. GrantedAuthority
+6. UsernamePasswordAuthenticationToken
+7. AuthenticationManager
+8. WebAuthenticationDetailsSource
+9. WebAuthenticationDetails
+9. SecurityContextHolder
+10. SessionCreationPolicy
 
 # Methods To Explore
 
