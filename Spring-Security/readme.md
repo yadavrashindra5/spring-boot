@@ -94,6 +94,7 @@ public interface UserDetailsService {
 # Security Internal Flow
 
 ![alt text](image-1.png)
+![img_6.png](img_6.png)
 
 **Note** To enable web security debug mode we have to add ***@EnableWebSecurity(debug=true)***
 
@@ -211,6 +212,10 @@ we can use different method to the method level annotation.
 
 ![img_3.png](img_3.png)
 
+![img_4.png](img_4.png)
+
+![img_5.png](img_5.png)
+
 # Steps to implement JWT in project
 
 1. Add the required dependencies
@@ -247,6 +252,7 @@ we can use different method to the method level annotation.
 5. https://medium.com/@punnapavankumar9/securing-spring-applications-with-method-level-security-5fb70811179e (Method
    level security)
 6. https://www.youtube.com/watch?v=h-9vhFeM3MY&t=105s (Internal working of Spring Security)
+7. https://www.geeksforgeeks.org/advance-java/spring-security-userdetailsservice-and-userdetails-with-example/ (UserDetailsService and UserDetails)
 
 # Classes To Explore
 
