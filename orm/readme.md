@@ -656,6 +656,46 @@ public class Course {
 
 # ✅ The join table structure is the same as in unidirectional.
 
+# What is Cascade in JPA?
+`cascade in JPA tells Hibernate:“When I perform an operation on this entity, apply the same operation to the related entities too.”`
+
+# Example
+```
+@OneToMany(cascade = CascadeType.ALL)
+private List<Employee> employees;
+```
+means:
+- If you `save` the `parent` → `save` the `children`
+- If you `delete` the `parent` → `delete` the `children`
+- If you merge the parent → merge the children and so on, depending on the cascade types you include.
+
+# Cascade Types in JPA
+
+| Cascade Type | What it does                                                     |
+| ------------ | ---------------------------------------------------------------- |
+| `PERSIST`    | When you save (persist) parent, save children too                |
+| `MERGE`      | When you merge parent, merge children                            |
+| `REMOVE`     | When you delete parent, delete children                          |
+| `REFRESH`    | When you refresh parent, refresh children                        |
+| `DETACH`     | When you detach parent from persistence context, detach children |
+| `ALL`        | Applies all of the above                                         |
+
+`Notes:-`
+# Does Cascade Work on the Owning Side Only?
+
+`✅ Yes — in practical terms, cascade operations only propagate from the owning side.`
+
+# Owning vs Inverse (Non-owning) side recap
+| Concept          | Description                                                                          |
+| ---------------- | ------------------------------------------------------------------------------------ |
+| **Owning side**  | The side that defines the foreign key or join table.                                 |
+| **Inverse side** | The side with `mappedBy`. It just reflects the relationship — it doesn’t control it. |
+
+`Note:-Only the owning side writes to the database relationship (foreign key or join table).`
+
+# Cascade behavior and ownership
+Cascade propagates from the entity that performs the operation, regardless of ownership, but only affects the database relationship when done from the owning side.
+
 # References
 
 1. https://medium.com/@yadavsunil9699/a-comprehensive-guide-to-annotations-in-spring-boot-jpa-950a05b5eb1b (All
